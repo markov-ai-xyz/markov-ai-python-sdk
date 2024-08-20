@@ -22,7 +22,7 @@ enabling seamless data processing across various modalities for your projects.
 
 ## Installation
 
-To install the MarkovAI Pipeline SDK, use pip:
+To install the Markov AI SDK, use pip:
 
 ```bash
 pip install markov-ai
@@ -34,7 +34,7 @@ Make sure to have Python 3.8 or higher installed.
 Here's a quick example to get you started:
 
 ```
-from markov-ai import Pipeline, Component
+from markov_ai import Pipeline, Component
 
 # Define your pipeline
 pipeline = Pipeline()
