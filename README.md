@@ -1,6 +1,9 @@
 # Markov AI SDK
 
-Welcome to the Markov AI SDK! This SDK provides a powerful and flexible framework for building and deploying machine learning pipelines that leverage the capabilities of MarkovAI. With this SDK, you can seamlessly integrate data processing, model training, and deployment into your projects.
+Welcome to the Markov AI SDK 👋 
+This SDK offers a robust framework for creating and deploying knowledge graphs with vector embeddings, 
+enabling seamless data processing across various modalities for your projects.
+
 
 ## Table of Contents
 
@@ -10,13 +13,11 @@ Welcome to the Markov AI SDK! This SDK provides a powerful and flexible framewor
 - [Usage](#usage)
 - [API Reference](#api-reference)
 - [Contributing](#contributing)
-- [License](#license)
 
 ## Features
 
-- **Modular Design**: Easily create and manage components of your machine learning pipeline.
-- **Integration with MarkovAI**: Directly utilize the MarkovAI platform for advanced AI capabilities.
-- **Scalability**: Build pipelines that can scale with your data and computational needs.
+- **Modular Design**: Easily create and manage components of your pipeline.
+- **Scalability**: Build knowledge graphs that can scale with your ever-increasing enterprise data.
 - **User-Friendly**: Designed with simplicity in mind, making it accessible for both beginners and experienced developers.
 
 ## Installation
@@ -64,7 +65,3 @@ For detailed information about the API and available components, please refer to
 ## Contributing
 
 We welcome contributions! Please read our [Contributing Guidelines](https://markovai.xyz/contributing-guidelines) to get started.
-
-## License
-
-This project is licensed under the MIT License. See the LICENSE file for details.
