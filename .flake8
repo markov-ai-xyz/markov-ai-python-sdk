@@ -1,0 +1,5 @@
+[flake8]
+max-line-length = 99
+exclude = .git, __pycache__, venv, dist, build
+enable-extensions = G
+format = default
