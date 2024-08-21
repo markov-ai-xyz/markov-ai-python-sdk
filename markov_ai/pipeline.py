@@ -4,8 +4,9 @@ from .component import Component
 
 
 class Pipeline:
-    def __init__(self) -> None:
+    def __init__(self, api_key) -> None:
         self.components: List[Component] = []
+        self.api_key = api_key
 
     def add(self, component: Component) -> None:
         self.components.append(component)
@@ -14,5 +15,5 @@ class Pipeline:
     def run(self) -> None:
         logging.info("Running pipeline...")
         for component in self.components:
-            component.run()
+            component.run(api_key=self.api_key)
         logging.info("Pipeline execution completed.")
