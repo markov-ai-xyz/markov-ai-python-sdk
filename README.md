@@ -35,13 +35,14 @@ Here's a quick example to get you started:
 
 ```
 from markov_ai import Pipeline, Component
+from neo4j import GraphDatabase
 
 # Define your pipeline
-pipeline = Pipeline()
+pipeline = Pipeline(api_key='markov-ai-[uuid]')
 
 # Add components to your pipeline
-pipeline.add(Component('DataLoader', source='data/source.csv'))
-pipeline.add(Component('ModelTrainer', model='RandomForest'))
+component = Component('DataLoader', source='./sample_content/apple.txt')
+pipeline.add(component)
 
 # Run the pipeline
 pipeline.run()

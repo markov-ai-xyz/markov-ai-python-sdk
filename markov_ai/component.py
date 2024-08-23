@@ -7,6 +7,14 @@ from .constants import MARKOV_AI_BASE_URL, MARKOV_AI_UPLOAD_ENDPOINT, MAX_FILE_S
 
 
 class Component:
+    """
+    A base class representing a component within a pipeline.
+
+    :param name: The name of the component
+    :param source: The file path or resource source associated with the component
+    :param kwargs: Additional keyword arguments that can be dynamically assigned as attributes
+    """
+
     def __init__(self, name: str, source: str, **kwargs: Any) -> None:
         self.name = name
         self.source: Path = Path(source)
