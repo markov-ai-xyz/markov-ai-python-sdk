@@ -1,6 +1,6 @@
-# Markov AI SDK
-
 [![Downloads](https://static.pepy.tech/badge/markov-ai)](https://pepy.tech/project/markov-ai)
+
+# Markov AI SDK
 
 Welcome to the Markov AI SDK 👋 
 This SDK offers a robust framework for creating and deploying knowledge graphs with vector embeddings, 
