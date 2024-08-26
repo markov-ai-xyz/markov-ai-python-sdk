@@ -1,5 +1,7 @@
 # Markov AI SDK
 
+[![Downloads](https://static.pepy.tech/badge/markov-ai)](https://pepy.tech/project/markov-ai)
+
 Welcome to the Markov AI SDK 👋 
 This SDK offers a robust framework for creating and deploying knowledge graphs with vector embeddings, 
 enabling seamless data processing across various modalities for your projects.
@@ -38,7 +40,8 @@ from markov_ai import Pipeline, Component
 from neo4j import GraphDatabase
 
 # Define your pipeline
-pipeline = Pipeline(api_key='markov-ai-[uuid]')
+driver = GraphDatabase.driver()
+pipeline = Pipeline(api_key='markov-ai-[uuid]', driver=driver)
 
 # Add components to your pipeline
 component = Component('DataLoader', source='./sample_content/apple.txt')
