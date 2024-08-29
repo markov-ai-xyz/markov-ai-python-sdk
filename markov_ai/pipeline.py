@@ -1,42 +1,23 @@
 import logging
-from typing import Any, List
+from typing import List
 from .component import Component
+from .destination import Destination
 
 
 class Pipeline:
     """
-    A Pipeline class to manage and execute a sequence of components, using a specified driver.
+    A Pipeline class to manage and execute a sequence of components, using a specified destination.
 
     :param api_key: API key used for authentication during component execution
-    :param driver: A valid database driver, either for Neo4j or AWS Neptune, to be used in the pipeline
+    :param destination: A valid database destination, either for Neo4j or AWS Neptune, to be used in the pipeline
     """
 
     def __init__(
-        self, api_key: str, driver: "Union[Neo4jDriver, NeptuneDriver]"
+        self, api_key: str, destination: Destination
     ) -> None:
         self.components: List[Component] = []
         self.api_key = api_key
-        self.driver = self.validate_driver(driver)
-
-    def validate_driver(self, driver: Any) -> Any:
-        """
-        Validates the provided driver to ensure it is compatible with the pipeline.
-
-        :param driver: The driver to be validated, expected to be either a Neo4j driver or an AWS Neptune DriverRemoteConnection
-        :return: The validated driver if it is compatible
-        :raises ValueError: If the driver is not of the expected type
-        """
-        if hasattr(driver, "session"):
-            return driver
-        elif (
-            hasattr(driver, "__class__")
-            and driver.__class__.__name__ == "DriverRemoteConnection"
-        ):
-            return driver
-        else:
-            raise ValueError(
-                "Driver must be either a Neo4j driver or an AWS Neptune DriverRemoteConnection"
-            )
+        self.destination = destination
 
     def add(self, component: Component) -> None:
         """
@@ -56,5 +37,5 @@ class Pipeline:
         """
         logging.info("Running pipeline...")
         for component in self.components:
-            component.run(api_key=self.api_key)
+            component.run(api_key=self.api_key, destination=self.destination)
         logging.info("Pipeline execution completed.")
