@@ -36,18 +36,23 @@ Make sure to have Python 3.8 or higher installed.
 Here's a quick example to get you started:
 
 ```
-from markov_ai import Pipeline, Component
-from neo4j import GraphDatabase
+import os
+from dotenv import load_dotenv
+load_dotenv()
 
-# Define your pipeline
-driver = GraphDatabase.driver()
-pipeline = Pipeline(api_key='markov-ai-[uuid]', driver=driver)
+api_key = os.getenv('MARKOV_AI_API_KEY')
+db_uri = os.getenv('DB_URI')
+db_user = os.getenv('DB_USER')
+db_password = os.getenv('DB_PASSWORD')
 
-# Add components to your pipeline
+from markov_ai import Component, DatabaseService, Destination, Pipeline
+
+destination = Destination.from_credentials(DatabaseService.NEO4J, db_uri, db_user, db_password)
+pipeline = Pipeline(api_key=api_key, destination=destination)
+
 component = Component('DataLoader', source='./sample_content/apple.txt')
 pipeline.add(component)
 
-# Run the pipeline
 pipeline.run()
 ```
 
