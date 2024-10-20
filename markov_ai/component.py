@@ -1,16 +1,22 @@
+# DEPRECATED: This file is no longer actively maintained and may be removed in future versions.
+# Please refer to the latest documentation for the current implementation.
+
 import json
 import logging
 import mimetypes
 from pathlib import Path
 from typing import Any
-from .service import make_post_request
+from .service import post_multipart_data
 from .constants import MARKOV_AI_BASE_URL, MARKOV_AI_UPLOAD_ENDPOINT, MAX_FILE_SIZE
 from .destination import Destination
 
 
 class Component:
     """
-    A base class representing a component within a pipeline.
+    DEPRECATED: A base class representing a component within a pipeline.
+
+    This class is deprecated and will be removed in a future release.
+    Please use the updated implementation as specified in the current documentation.
 
     :param name: The name of the component
     :param source: The file path or resource source associated with the component
@@ -18,14 +24,16 @@ class Component:
     """
 
     def __init__(self, name: str, source: str, **kwargs: Any) -> None:
+        logging.warning("DeprecationWarning: The Component class is deprecated and will be removed in a future version.")
         self.name = name
         self.source: Path = Path(source)
         self.__dict__.update(kwargs)
 
     def handle_file_selection(self) -> bool:
         """
-        Checks if the selected file exists and if its size is within the allowed limit.
+        DEPRECATED: Checks if the selected file exists and if its size is within the allowed limit.
         """
+        logging.warning("DeprecationWarning: handle_file_selection method is deprecated.")
         if not self.source.exists():
             logging.error("File not found")
             return False
@@ -38,12 +46,13 @@ class Component:
 
     def run(self, api_key: str, destination: Destination) -> bool:
         """
-        Upload the file to the API if it meets the size criteria.
+        DEPRECATED: Upload the file to the API if it meets the size criteria.
 
         :param api_key: API key for authentication
         :param destination: A valid database destination, either for Neo4j or AWS Neptune, to be used in the pipeline
         :return: True if upload was successful, False otherwise
         """
+        logging.warning("DeprecationWarning: run method is deprecated.")
         if not self.handle_file_selection():
             return False
 
@@ -60,7 +69,7 @@ class Component:
                 }
                 headers = {"Authorization": f"Bearer {api_key}"}
 
-                response = make_post_request(
+                response = post_multipart_data(
                     f"{MARKOV_AI_BASE_URL}{MARKOV_AI_UPLOAD_ENDPOINT}",
                     fields=fields,
                     headers=headers,

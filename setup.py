@@ -2,10 +2,11 @@ from setuptools import setup, find_packages
 
 setup(
     name="markov-ai",
-    version="0.1.7",
+    version="0.1.8",
     packages=find_packages(),
     install_requires=[
         "requests>=2.25.1",
+        "requests-toolbelt>=1.0.0",
     ],
     author="Anant Chandra",
     author_email="anantchandra98@gmail.com",

@@ -63,7 +63,7 @@ You can customize each component to fit your specific needs.
 
 ### Example Components
 * DataLoader: Load data from various sources (CSV, databases, etc.).
-* Preprocessor: Clean and preprocess your data.
+* PreProcessor: Clean and preprocess your data.
 * ModelTrainer: Train your model using different algorithms.
 * Evaluator: Evaluate the performance of your model.
 
