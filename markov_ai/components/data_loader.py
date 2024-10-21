@@ -106,7 +106,7 @@ class DataLoader:
     def _get_headers(self) -> Dict[str, str]:
         """Helper method to prepare the headers for API requests."""
         return {
-            "Authorization": f"Bearer {self.api_key}"
+            "X-API-Key": self.api_key
         }
 
     @staticmethod
