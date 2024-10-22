@@ -26,7 +26,9 @@ class PreProcessor:
         url = f"{MARKOV_AI_BASE_URL}{MARKOV_AI_PARSE_ENDPOINT}"
         data = {
             "markov_s3_key": markov_s3_key,
-            "res": resolution
+            "kwargs": {
+                "res": resolution
+            }
         }
         headers = self._get_headers()
 
