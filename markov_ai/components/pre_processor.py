@@ -1,7 +1,7 @@
 import logging
 from typing import Any, Dict, Optional
 from ..service import post_json_data
-from ..constants import MARKOV_AI_BASE_URL, MARKOV_AI_PARSE_ENDPOINT
+from ..constants import MARKOV_AI_BASE_URL, MARKOV_AI_PARSE_ENDPOINT,MARKOV_AI_PROCESS_ENDPOINT
 
 
 class PreProcessor:
@@ -49,3 +49,19 @@ class PreProcessor:
             return response.json()
         logging.error(f"{operation} failed: {response.text if response else 'No response'}")
         return None
+
+    def process(self, markov_s3_key: str, **kwargs: Any) -> Optional[Dict[str, Any]]:
+        """
+        :param markov_s3_key: Markov-side S3 key, pointing to the object.
+        :param kwargs: Additional parameters for processing.
+        :return: Response from the /process endpoint.
+        """
+        url = f"{MARKOV_AI_BASE_URL}{MARKOV_AI_PROCESS_ENDPOINT}"
+        data = {
+            "markov_s3_key": markov_s3_key,
+            "kwargs": kwargs
+        }
+
+        headers = self._get_headers()
+        response = post_json_data(url,data=data,headers=headers)
+        return self._handle_response(response, "Processed S3 file successfully")
