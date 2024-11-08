@@ -35,21 +35,6 @@ class PreProcessor:
         response = post_json_data(url, data=data, headers=headers)
         return self._handle_response(response, "Parsing artifact")
 
-    def _get_headers(self) -> Dict[str, str]:
-        """Helper method to prepare the headers for API requests."""
-        return {
-            "X-API-Key": self.api_key
-        }
-
-    @staticmethod
-    def _handle_response(response: Optional[Any], operation: str) -> Optional[Dict[str, Any]]:
-        """Helper method to handle API responses."""
-        if response and response.status_code == 200:
-            logging.info(f"{operation} successful")
-            return response.json()
-        logging.error(f"{operation} failed: {response.text if response else 'No response'}")
-        return None
-
     def process(self, markov_s3_key: str, **kwargs: Any) -> Optional[Dict[str, Any]]:
         """
         :param markov_s3_key: Markov-side S3 key, pointing to the object.
@@ -65,3 +50,18 @@ class PreProcessor:
         headers = self._get_headers()
         response = post_json_data(url,data=data,headers=headers)
         return self._handle_response(response, "Processed S3 file successfully")
+
+    def _get_headers(self) -> Dict[str, str]:
+        """Helper method to prepare the headers for API requests."""
+        return {
+            "X-API-Key": self.api_key
+        }
+
+    @staticmethod
+    def _handle_response(response: Optional[Any], operation: str) -> Optional[Dict[str, Any]]:
+        """Helper method to handle API responses."""
+        if response and response.status_code == 200:
+            logging.info(f"{operation} successful")
+            return response.json()
+        logging.error(f"{operation} failed: {response.text if response else 'No response'}")
+        return None
