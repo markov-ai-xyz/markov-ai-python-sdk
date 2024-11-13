@@ -69,3 +69,25 @@ class Destination:
             'db_password': self.db_password,
             **self.additional_params
         }
+
+    def get_session(self):
+        """
+        Creates and returns a database session based on the database service type.
+
+        :return: A database session object for either Neo4j or Neptune
+        :raises ValueError: If the database service is not supported
+        """
+        if self.db_service == DatabaseService.NEO4J:
+            from neo4j import GraphDatabase
+            driver = GraphDatabase.driver(self.db_uri, auth=(self.db_username, self.db_password))
+            return driver.session()
+        elif self.db_service == DatabaseService.AWS_NEPTUNE:
+            from gremlin_python.driver.driver_remote_connection import DriverRemoteConnection
+            from gremlin_python.process.graph_traversal import GraphTraversalSource
+            from gremlin_python.process.anonymous_traversal import traversal
+
+            conn = DriverRemoteConnection(self.db_uri, 'g')
+            return traversal().withRemote(conn)
+        else:
+            raise ValueError(f"Unsupported database service: {self.db_service}")
+
